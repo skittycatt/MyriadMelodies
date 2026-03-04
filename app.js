@@ -12,9 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
       console.log(result);
       const mapper = result.data.work.user.nickname;
       const game_data = result.data.work.game_data;
-      console.log("map: " + game_data.name)
-      console.log("mapper: " + mapper);
-      console.log("note count: " + game_data.music_cnt);
+      document.querySelector(".info").innerHTML = `map: ${game_data.name}<br>mapper: ${mapper}<br>note count: ${game_data.music_cnt}`;
     }
     catch (error) {
       console.error(error.message);
