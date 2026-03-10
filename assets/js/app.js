@@ -13,6 +13,9 @@ document.addEventListener("DOMContentLoaded", () => {
       const mapper = result.data.work.user.nickname;
       const game_data = result.data.work.game_data;
       document.querySelector(".info").innerHTML = `map: ${game_data.name}<br>mapper: ${mapper}<br>note count: ${game_data.music_cnt}`;
+      const r = await fetch("http://34.72.70.49:3000");
+      const r2 = await r.text();
+      console.log(r2);
     }
     catch (error) {
       console.error(error.message);
