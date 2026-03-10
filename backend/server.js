@@ -19,6 +19,10 @@ app.get('/', (req, res) => {
     res.end("hehe");
 });
 
+app.get('/.well-known/pki-validation/DA73E9AA2113AE2ECE87F0662A00BACA.txt', (req, res) => {
+    res.sendFile('/home/stevenluu10/DA73E9AA2113AE2ECE87F0662A00BACA.txt');
+});
+
 app.listen(port, () => {
     console.log(`Server listening on port ${port}`);
 });
