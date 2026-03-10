@@ -3,9 +3,9 @@ import fs from 'fs';
 import https from 'https';
 import mysql from 'mysql2';
 
-
 const app = express();
 const port = 3000;
+const https_port = 8443;
 
 const pool = mysql.createPool({
     connectionLimit: 5,
@@ -31,6 +31,6 @@ app.listen(port, () => {
     console.log(`Server listening on port ${port}`);
 });
 const server = https.createServer(options, app);
-server.listen(process.env.PORT, () => {
-    console.log(`HTTPS Server listening on port${port}`);
+server.listen(https_port, () => {
+    console.log(`HTTPS Server listening on port ${https_port}`);
 });
