@@ -1,5 +1,8 @@
 import express from 'express';
+import fs from 'fs';
+import https from 'https';
 import mysql from 'mysql2';
+
 
 const app = express();
 const port = 3000;
@@ -19,10 +22,15 @@ app.get('/', (req, res) => {
     res.end("hehe");
 });
 
-app.get('/.well-known/pki-validation/DA73E9AA2113AE2ECE87F0662A00BACA.txt', (req, res) => {
-    res.sendFile('/home/stevenluu10/DA73E9AA2113AE2ECE87F0662A00BACA.txt');
-});
+const options = {
+    key: fs.readFileSync("/home/stevenluu10/private.key", "utf8"),
+    cert: fs.readFileSync("/home/stevenluu10/certificate.crt", "utf8")
+}
 
 app.listen(port, () => {
     console.log(`Server listening on port ${port}`);
+});
+const server = https.createServer(options, app);
+server.listen(process.env.PORT, () => {
+    console.log(`HTTPS Server listening on port${port}`);
 });
