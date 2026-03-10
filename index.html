@@ -5,38 +5,57 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
 <html>
-	<head>
-		<title>Myriad Melodies Tracker</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/styles.css" />
-		<!-- Scripts -->
-		<script type="text/javascript" src="assets/js/app.js" async></script>
-    	<script type="text/javascript" src="assets/js/jquery-4.0.0.min.js"></script>
-        <style></style>
-	</head>
-	<body>
-		<!-- Header -->
-			<header id="header">
-				<h1>Myriad Melodies Tracker</h1>
-				<p>Track what you've played, rate maps, and more.</p>
-			</header>
 
-		<!-- Search Form -->
-			<form id="search-form">
-				<label for="search-id">Sharing code:</label>
-				<input type="text" id="search-id">
-				<input type="submit" class="btn btn-primary btn-block" value="Search"></button>
-			</form>
-			<p class="info"></p>
-		<!-- Footer -->
-			<footer id="footer">
-				
-				<ul class="copyright">
-					<li>Credits: <a href="http://html5up.net">HTML5 UP</a></li>
-				</ul>
-			</footer>
+<head>
+	<title>Myriad Melodies Tracker</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="assets/css/styles.css" />
+	<link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+	<!-- Scripts -->
+	<script type="text/javascript" src="assets/js/app.js" async></script>
+	<script type="text/javascript" src="assets/js/jquery-4.0.0.min.js"></script>
+	<script src="https://kit.fontawesome.com/cbf8f9b85f.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+	<!-- Header -->
+	<header id="header">
+		<h1>Myriad Melodies Tracker</h1>
+		<p>Track what you've played, rate maps, and more.</p>
+	</header>
+
+	<!-- Search Form -->
+	<form id="search-form">
+		<label for="search-id">Sharing code:</label>
+		<input type="text" id="search-id">
+		<input type="submit" class="btn btn-primary btn-block" value="Search"></button>
+	</form>
+
+	<!-- Error div -->
+	<div class="error" id="error" hidden></div>
+
+	<!-- Track info div -->
+	<div class="container" id="info" hidden>
+		<img id="coverImage" src="">
+		<div>
+			<div id="mapName"></div>
+			<div id="creator"></div>
+		</div>
+		<div><i class="fa-solid fa-sliders fa-rotate-270 fa-fw"></i><span id="noteCount"></span><br></div>
+		<div><i class="fa-solid fa-eye fa-fw"></i><span id="viewCount"></span><br></div>
+		<div><i class="fa-solid fa-heart fa-fw"></i><span id="likeCount"></span><br></div>
+		<div><i class="fa-solid fa-star fa-fw"></i><span id="favoriteCount"></span><br></div>
+	</div>
+	<!-- Footer -->
+	<footer id="footer">
+
+		<ul class="copyright">
+			<li>Credits: <a href="http://html5up.net">HTML5 UP</a></li>
+		</ul>
+	</footer>
 
 
-	</body>
+</body>
+
 </html>
