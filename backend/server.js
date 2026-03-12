@@ -21,9 +21,20 @@ const pool = mysql.createPool({
     multipleStatements: true
 });
 
-app.get('/', (req, res) => {
-    res.writeHead(200, {"Content-Type": "text/html"});
-    res.end("hehe");
+app.get('/api/sharing-code', async(req, res) => {
+    const sharingCode = req.query.sharingCode;
+    const url = `https://sg-hk4e-api.hoyoverse.com/event/musicugc/v1/work_detail?lang=en-us&game_biz=hk4e_global&is_mobile=false&region=os_usa&share_code=${sharingCode}`;
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(`Response status: ${response.status}`);
+        }
+        const result = await response.json();
+        res.send(result);
+    }
+    catch (error) {
+      console.error(error.message);
+    }
 });
 
 // For ssl verification
