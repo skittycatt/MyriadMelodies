@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
   $("#search-form").submit(async function (event) {
-    event.preventDefault();
+    event.preventDefault(); // prevent actually submitting the form
+
+    // get info from Hoyo's API using Corsproxy
     const url = "https://corsproxy.io/?url=" + encodeURIComponent("https://sg-hk4e-api.hoyoverse.com/event/musicugc/v1/work_detail?lang=en-us&game_biz=hk4e_global&is_mobile=false&region=os_usa&share_code="
       + document.querySelector("#search-id").value.trim());
     try {
@@ -10,6 +12,8 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       const result = await response.json();
       console.log(result);
+
+      // set visibility of info and error divs
       var infoDiv = document.querySelector("#info");
       var errorDiv = document.querySelector("#error");
       if (result.data === null) {
@@ -20,19 +24,36 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       infoDiv.removeAttribute("hidden");
       errorDiv.setAttribute("hidden", "");
-      const mapper = result.data.work.user.nickname;
+
+      // populate the info div with map data
+      const user = result.data.work.user;
       const game_data = result.data.work.game_data;
-
       const interact_data = result.data.work.interact_data;
-      document.querySelector("#mapName").innerHTML = game_data.name;
-      document.querySelector("#creator").innerHTML = mapper;
-      document.querySelector("#noteCount").innerHTML = game_data.music_cnt;
-      document.querySelector("#viewCount").innerHTML = interact_data?.view_cnt ?? 0;
-      document.querySelector("#likeCount").innerHTML = game_data.like_cnt + (interact_data?.like_cnt ?? 0);
-      document.querySelector("#favoriteCount").innerHTML = game_data.save_cnt + (interact_data?.save_cnt ?? 0);
+      var heart_rating = result.data.work.quality_score;
+      if (heart_rating === 0) { // only works with an interaction platform post have quality_score (which is more accurate)
+        heart_rating = game_data.recommend_score;
+      }
 
-      var coverImage = document.querySelector("#coverImage");
+      document.querySelector("#map_name").innerHTML = game_data.name;
+      document.querySelector("#creator").innerHTML = user.nickname;
+      document.querySelector("#creator_avatar").src = user.head_image_avatar_url;
+      document.querySelector("#note_count").innerHTML = game_data.music_cnt;
+      document.querySelector("#key_count").innerHTML = game_data.note_tag;
+      document.querySelector("#like_count").innerHTML = game_data.like_cnt + (interact_data?.like_cnt ?? 0);
+      document.querySelector("#play_count").innerHTML = game_data.challenge_cnt;
+      document.querySelector("#heart_rating").innerHTML = heart_rating;
+      document.querySelector("#favorite_count").innerHTML = game_data.save_cnt + (interact_data?.save_cnt ?? 0);
+
+      var coverImage = document.querySelector("#cover");
       coverImage.src = getCoverUrl(game_data.music_id);
+
+      // API/database
+      // --------------------
+
+      // once we're getting data from the database, we need to set visibility of the canorus_ring based on their saved rank
+      if (document.querySelector("#canorus").checked === true) {
+        setCanorus(true);
+      }
 
       const r = await fetch("https://34.72.70.49");
       const r2 = await r.text();
@@ -43,7 +64,48 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
   });
+
+  // score rank radio
+  $("input[type='radio']").on("change", (e) => {
+    if (e.target.id === "canorus") {
+      setCanorus(true);
+    }
+    else {
+      setCanorus(false);
+    }
+  });
+
+  // star rating constructor
+  $("#user_rating").rates({
+    shape: "white-heart",
+    shadeColor: "rates-green-outline",
+    shapeCount: 10,
+    imagesFolderLocation: "assets/"
+  });
+
+  // star rating changed
+  $("#user_ratingRating").on("change", (e) => {
+    console.log(e.target.value + " is the rating for this map!");
+  });
+
+
 });
+
+
+
+/// canorus: bool representing if the current track is canorus or not
+function setCanorus(canorus) {
+  var canorus_ring = document.querySelector("#canorus_ring");
+  var vinyl = document.querySelector("#vinyl");
+  if (canorus) {
+    canorus_ring.removeAttribute("hidden");
+    vinyl.setAttribute("hidden", "");
+  }
+  else {
+    canorus_ring.setAttribute("hidden", "");
+    vinyl.removeAttribute("hidden");
+  }
+}
 
 
 function getCoverUrl(music_id) {

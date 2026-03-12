@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+	<title>Myriad Melodies Tracker</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="assets/css/styles.css" />
+	<link rel="stylesheet" href="assets/css/rates.css" />
+	<link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+	<!-- Scripts -->
+	<script type="text/javascript" src="assets/js/app.js" async></script>
+	<script type="text/javascript" src="assets/js/jquery-4.0.0.min.js"></script>
+	<script src="https://kit.fontawesome.com/cbf8f9b85f.js" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="assets/js/jquery-rates.js"></script>
+</head>
+
+<body>
+	<!-- Header -->
+	<header id="header">
+		<h1>Myriad Melodies Tracker</h1>
+		<p>Track what you've played, rate maps, and more.</p>
+	</header>
+
+	<!-- Search Form -->
+	<form id="search-form">
+		<label for="search-id">Sharing code:</label>
+		<input type="text" id="search-id">
+		<input type="submit" class="btn btn-primary btn-block" value="Search"></button>
+	</form>
+
+	<!-- Error div -->
+	<div class="error" id="error" hidden></div>
+
+	<!-- Track info div -->
+	<div class="container" id="info" hidden>
+		<div id="track_images">
+			<img id="vinyl" src="assets/images/Vinyl.png">
+			<img id="cover" src="">
+			<img id="canorus_ring" src="assets/images/CanorusRing.png" hidden>
+		</div>
+		<div>
+			<div id="map_name"></div>
+			<span class="author">
+				<img id="creator_avatar" src=""></img>
+				<span id="creator"></span>
+			</span>
+
+			<div id="creator_canorus"></div>
+			<div id="creator_play_count"></div>
+			<!-- Rating will be star rating on this website specifically -->
+			<div id="user_rating"></div>
+		</div>
+		<div>
+			<div><i class="fa-solid fa-sliders fa-rotate-270 fa-fw"></i><span id="note_count"></span><br></div>
+			<div><i class="fa-solid fa-key fa-fw"></i><span id="key_count"></span><br></div>
+			<div><i class="fa-solid fa-thumbs-up fa-fw"></i><span id="like_count"></span><br></div>
+		</div>
+		<div>
+			<div><i class="fa-solid fa-play fa-fw"></i><span id="play_count"></span> </div>
+			<div><i class="fa-solid fa-heart fa-fw"></i><span id="heart_rating"></span> </div> <!-- This rating is from up/downvote average within game -->
+			<div><i class="fa-solid fa-star fa-fw"></i><span id="favorite_count"></span><br></div>
+		</div>
+		<div>
+			<!-- Ranking is the score they got while playing the map -->
+			<input type="radio" name="score_ranking" id="canorus" value="Canorus">
+			<label for="canorus"><img class="score_ranking_icons" src="assets/images/Canorus.png"> Canorus </label>
+			<input type="radio" name="score_ranking" id="discantus" value="Discantus">
+			<label for="discantus"><img class="score_ranking_icons" src="assets/images/Discantus.png"> Discantus
+			</label>
+			<input type="radio" name="score_ranking" id="dulcem" value="Dulcem">
+			<label for="dulcem"><img class="score_ranking_icons" src="assets/images/Dulcem.png"> Dulcem </label>
+			<input type="radio" name="score_ranking" id="euphonia" value="Euphonia">
+			<label for="euphonia"><img class="score_ranking_icons" src="assets/images/Euphonia.png"> Euphonia </label>
+			<input type="radio" name="score_ranking" id="no_ranking" value="No Ranking">
+			<label for="no_ranking"> <span style="margin-left:10px"> No ranking </span></label>
+		</div>
+
+	</div>
+	<!-- Footer -->
+	<footer id="footer">
+
+		<ul class="copyright">
+			<li>Credits: <a href="http://html5up.net">HTML5 UP</a></li>
+		</ul>
+	</footer>
+
+
+</body>
+
+</html>
