@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     event.preventDefault(); // prevent actually submitting the form
 
     // get info from our backend api :)
+    const sharingCode = document.querySelector("#search-id").value.trim();
     const url = `https://35.222.248.224/api/sharing-code?sharingCode=${sharingCode}`
     try {
       const response = await fetch(url);
@@ -53,10 +54,6 @@ document.addEventListener("DOMContentLoaded", () => {
       if (document.querySelector("#canorus").checked === true) {
         setCanorus(true);
       }
-
-      const r = await fetch("https://34.72.70.49");
-      const r2 = await r.text();
-      console.log(r2);
     }
     catch (error) {
       console.error(error.message);
