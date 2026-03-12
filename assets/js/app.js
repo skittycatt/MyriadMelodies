@@ -3,8 +3,9 @@ document.addEventListener("DOMContentLoaded", () => {
     event.preventDefault(); // prevent actually submitting the form
 
     // get info from Hoyo's API using Corsproxy
-    const url = "https://corsproxy.io/?url=" + encodeURIComponent("https://sg-hk4e-api.hoyoverse.com/event/musicugc/v1/work_detail?lang=en-us&game_biz=hk4e_global&is_mobile=false&region=os_usa&share_code="
+    const target_url = encodeURIComponent("https://sg-hk4e-api.hoyoverse.com/event/musicugc/v1/work_detail?lang=en-us&game_biz=hk4e_global&is_mobile=false&region=os_usa&share_code="
       + document.querySelector("#search-id").value.trim());
+    const url = "https://corsproxy.io/?key=f15a4ec7" + "&url=" + target_url;
     try {
       const response = await fetch(url);
       if (!response.ok) {
