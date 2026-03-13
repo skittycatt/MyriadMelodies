@@ -81,9 +81,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // star rating changed
   $("#user_ratingRating").on("change", (e) => {
-    console.log(e.target.value + " is the rating for this map!");
+    console.log(`${e.target.value} is the rating for this map!`);
   });
 
+
+
+  $("#save_button").on("click", (e) => {
+    const rating_submit = document.querySelector("#user_ratingRating").value;
+    const ranking_submit = $("input[name=score_ranking]:checked").val();
+    console.log(`submitted rating: ${rating_submit} ranking: ${ranking_submit}`);
+  });
 
 });
 
@@ -106,7 +113,7 @@ function setCanorus(canorus) {
 
 function getCoverUrl(music_id) {
   var url;
-  url = "https://fastcdn.hoyoverse.com/mi18n/hk4e_global/m20241021hy3aep4ef4/upload/" + coverIds[music_id] + ".png?x-oss-process=image/resize,s_1000,w_100/quality,q_70/format,webp";
+  url = `https://fastcdn.hoyoverse.com/mi18n/hk4e_global/m20241021hy3aep4ef4/upload/${coverIds[music_id]}.png?x-oss-process=image/resize,s_1000,w_100/quality,q_70/format,webp`;
   return url;
 }
 

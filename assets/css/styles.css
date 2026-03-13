@@ -1166,7 +1166,7 @@ top/left value for cover needs to be (vinyl height / 2) - (cover height / 2)
   margin-right: 2%;
 }
 
-#track_images>#cover {
+#cover {
   position: relative;
   width: 130px;
   height: 130px;
@@ -1175,7 +1175,7 @@ top/left value for cover needs to be (vinyl height / 2) - (cover height / 2)
   z-index: 5;
 }
 
-#track_images>#vinyl {
+#vinyl {
   position: absolute;
   width: 160px;
   height: 160px;
@@ -1184,13 +1184,16 @@ top/left value for cover needs to be (vinyl height / 2) - (cover height / 2)
   z-index: 1;
 }
 
-#track_images>#canorus_ring {
+#canorus_ring {
   position: absolute;
   width: 204px;
   height: 204px;
   top: -22px;
   left: -22px;
   z-index: 10;
+  -webkit-animation:spin 10s linear infinite;
+    -moz-animation:spin 10s linear infinite;
+    animation:spin 10s linear infinite;
 }
 
 @media screen and (max-width: 480px) {
@@ -1205,7 +1208,7 @@ top/left value for cover needs to be (vinyl height / 2) - (cover height / 2)
 }
 
 @media screen and (max-width: 480px) {
-  #track_images>#vinyl {
+  #vinyl {
     width: 90px;
     height: 90px;
     top: 0px;
@@ -1214,7 +1217,7 @@ top/left value for cover needs to be (vinyl height / 2) - (cover height / 2)
 }
 
 @media screen and (max-width: 480px) {
-  #track_images>#canorus_ring {
+  #canorus_ring {
     width: 100px;
     height: 100px;
     top: -5px;
@@ -1247,4 +1250,17 @@ top/left value for cover needs to be (vinyl height / 2) - (cover height / 2)
 .author {
   display: flex;
   margin-top: 5px;
+}
+
+@-moz-keyframes spin { 
+    100% { -moz-transform: rotate(360deg); } 
+}
+@-webkit-keyframes spin { 
+    100% { -webkit-transform: rotate(360deg); } 
+}
+@keyframes spin { 
+    100% { 
+        -webkit-transform: rotate(360deg); 
+        transform:rotate(360deg); 
+    } 
 }
