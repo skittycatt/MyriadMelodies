@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // get info from our backend api :)
     const sharingCode = document.querySelector("#search-id").value.trim();
-    const url = `https://35.222.248.224/api/sharing-code?sharingCode=${sharingCode}`
+    const url = `https://5.161.67.189/api/sharing-code?sharingCode=${sharingCode}`
     try {
       const response = await fetch(url);
       if (!response.ok) {
